@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Ofrenda & Remembrance Story Altar | Día de los Muertos</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cinzel Decorative, Cinzel, and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            marigold: {
+              300: '#FFC857',
+              400: '#FFAA1D',
+              500: '#FF9900', // Traditional Cempasúchil Orange
+              600: '#E68000',
+              700: '#CC6600',
+              800: '#994400'
+            },
+            ofrendaPurple: {
+              950: '#0B0414',
+              900: '#140722',
+              850: '#1A0B2E', // Deep velvet altar purple
+              800: '#260F40',
+              700: '#3D1763',
+              600: '#58218C'
+            },
+            goldAccent: {
+              400: '#FFE066',
+              500: '#FFD700',
+              600: '#E6C200',
+              700: '#B39700'
+            },
+            calaveraPink: '#FF1493',
+            copalCyan: '#00E5FF',
+            selvaGreen: '#00E676',
+            flameAmber: '#FF6D00'
+          },
+          fontFamily: {
+            display: ['"Cinzel Decorative"', 'serif'],
+            serif: ['"Cinzel"', 'Georgia', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'candle': '0 0 25px 8px rgba(255, 153, 0, 0.45)',
+            'candle-lg': '0 0 45px 15px rgba(255, 153, 0, 0.55)',
+            'flame': '0 0 14px 4px rgba(255, 215, 0, 0.8), 0 0 35px 12px rgba(255, 109, 0, 0.6)',
+            'altar-glow': '0 -15px 50px 10px rgba(255, 153, 0, 0.25)',
+            'gold-frame': '0 0 20px 2px rgba(255, 215, 0, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #140722;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FF9900;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FFD700;
+    }
+
+    /* Candle Flame Physics & Glow */
+    .flame {
+      transform-origin: center bottom;
+      animation: flicker 1.8s infinite ease-in-out alternate;
+      filter: drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 16px #FF6D00);
+    }
+    .flame-intense {
+      animation: flicker 0.9s infinite ease-in-out alternate;
+    }
+    @keyframes flicker {
+      0% {
+        transform: scaleY(1) scaleX(1) rotate(-1.5deg);
+        opacity: 0.95;
+      }
+      25% {
+        transform: scaleY(1.12) scaleX(0.92) rotate(1deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scaleY(0.94) scaleX(1.05) rotate(-2deg);
+        opacity: 0.9;
+      }
+      75% {
+        transform: scaleY(1.08) scaleX(0.96) rotate(1.5deg);
+        opacity: 0.98;
+      }
+      100% {
+        transform: scaleY(1) scaleX(1.02) rotate(-0.5deg);
+        opacity: 0.93;
+      }
+    }
+
+    /* Candle Light Halo */
+    .candle-halo {
+      animation: haloPulse 3s infinite ease-in-out;
+    }
+    @keyframes haloPulse {
+      0%, 100% {
+        opacity: 0.55;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.85;
+        transform: scale(1.15);
+      }
+    }
+
+    /* Papel Picado Waving Animation */
+    .papel-banner {
+      transform-origin: top center;
+      animation: papelWave 4.5s ease-in-out infinite;
+    }
+    .papel-banner:nth-child(even) {
+      animation-duration: 5.2s;
+      animation-delay: -1.2s;
+    }
+    .papel-banner:nth-child(3n) {
+      animation-duration: 3.8s;
+      animation-delay: -2.1s;
+    }
+    @keyframes papelWave {
+      0%, 100% {
+        transform: rotate(0deg) skewX(0deg);
+      }
+      30% {
+        transform: rotate(1.6deg) skewX(1deg);
+      }
+      70% {
+        transform: rotate(-1.8deg) skewX(-1.2deg);
+      }
+    }
+
+    /* Smoke animation for Copal incense */
+    .copal-smoke {
+      animation: riseAndDrift 4s infinite linear;
+    }
+    @keyframes riseAndDrift {
+      0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-25px) scale(1.2) rotate(15deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-55px) scale(1.8) rotate(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* Golden Arch Glow */
+    .arch-cempasuchil {
+      background: radial-gradient(ellipse at center, rgba(255, 153, 0, 0.25) 0%, rgba(20, 7, 34, 0) 70%);
+    }
+
+    /* Altar Step Perspective */
+    .altar-tier {
+      position: relative;
+      background: linear-gradient(180deg, #2A114A 0%, #170929 100%);
+      border-top: 3px solid #FFD700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 2px 4px rgba(255, 215, 0, 0.3);
+    }
+    .altar-tier::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #FF9900, #FFD700, #FF1493, #FFD700, #FF9900);
+    }
+
+    /* Floating canvas overlay */
+    #petals-canvas {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body class="bg-ofrendaPurple-950 text-amber-50 font-sans min-h-screen relative overflow-x-hidden selection:bg-marigold-500 selection:text-ofrendaPurple-950">
+
+  <!-- Floating Marigold Petals & Spirit Orbs Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- ================= PAPEL PICADO BANNER STRIP ================= -->
+  <header class="relative z-30 overflow-hidden border-b border-marigold-500/20 bg-gradient-to-b from-black/80 to-transparent">
+    <div class="flex justify-between items-start w-full px-1 pt-1 pb-3 space-x-1 sm:space-x-2 select-none">
+      <!-- Banner 1: Magenta Skull -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md filter hover:brightness-125 transition-all text-calaveraPink">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <path fill="#0B0414" d="M50,22 C38,22 30,32 30,44 C30,54 36,60 40,64 L40,75 L60,75 L60,64 C64,60 70,54 70,44 C70,32 62,22 50,22 Z M42,42 C38,42 36,38 38,34 C40,30 46,32 44,38 Z M58,42 C54,42 52,38 54,34 C56,30 62,32 60,38 Z M50,56 L47,60 L53,60 Z M44,68 L46,68 L46,72 L44,72 Z M49,68 L51,68 L51,72 L49,72 Z M54,68 L56,68 L56,72 L54,72 Z" />
+          <!-- Cutout details -->
+          <circle cx="16" cy="18" r="4" fill="#0B0414"/>
+          <circle cx="84" cy="18" r="4" fill="#0B0414"/>
+          <path d="M10,80 Q25,75 18,65" stroke="#0B0414" stroke-width="2.5" fill="none"/>
+          <path d="M90,80 Q75,75 82,65" stroke="#0B0414" stroke-width="2.5" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Banner 2: Marigold Flower -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md text-marigold-500">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <path fill="#0B0414" d="M50,28 C50,28 55,42 66,42 C56,47 58,60 50,54 C42,60 44,47 34,42 C45,42 50,28 50,28 Z" />
+          <circle cx="50" cy="46" r="5" fill="currentColor"/>
+          <circle cx="50" cy="74" r="8" fill="#0B0414"/>
+          <circle cx="28" cy="74" r="6" fill="#0B0414"/>
+          <circle cx="72" cy="74" r="6" fill="#0B0414"/>
+          <circle cx="20" cy="24" r="4" fill="#0B0414"/>
+          <circle cx="80" cy="24" r="4" fill="#0B0414"/>
+        </svg>
+      </div>
+
+      <!-- Banner 3: Copal Cyan Butterfly -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center hidden xs:block">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md text-copalCyan">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <!-- Butterfly cutout -->
+          <path fill="#0B0414" d="M49,30 L51,30 L51,68 L49,68 Z M48,34 C35,22 20,38 32,50 C24,58 35,68 46,55 Z M52,34 C65,22 80,38 68,50 C76,58 65,68 54,55 Z" />
+          <circle cx="50" cy="80" r="6" fill="#0B0414"/>
+          <circle cx="30" cy="80" r="4" fill="#0B0414"/>
+          <circle cx="70" cy="80" r="4" fill="#0B0414"/>
+        </svg>
+      </div>
+
+      <!-- Banner 4: Gold Sun / Sol -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md text-goldAccent-500">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <!-- Sun burst cutout -->
+          <circle cx="50" cy="48" r="14" fill="#0B0414"/>
+          <circle cx="50" cy="48" r="7" fill="currentColor"/>
+          <polygon points="50,24 53,30 47,30" fill="#0B0414"/>
+          <polygon points="50,72 53,66 47,66" fill="#0B0414"/>
+          <polygon points="26,48 32,51 32,45" fill="#0B0414"/>
+          <polygon points="74,48 68,51 68,45" fill="#0B0414"/>
+          <circle cx="22" cy="76" r="5" fill="#0B0414"/>
+          <circle cx="78" cy="76" r="5" fill="#0B0414"/>
+        </svg>
+      </div>
+
+      <!-- Banner 5: Selva Green Candle -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center hidden sm:block">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md text-selvaGreen">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <!-- Candle cutout -->
+          <rect x="44" y="44" width="12" height="34" rx="2" fill="#0B0414"/>
+          <path d="M50,26 C53,32 55,36 50,42 C45,36 47,32 50,26 Z" fill="#0B0414"/>
+          <circle cx="28" cy="40" r="6" fill="#0B0414"/>
+          <circle cx="72" cy="40" r="6" fill="#0B0414"/>
+          <circle cx="50" cy="85" r="4" fill="#0B0414"/>
+        </svg>
+      </div>
+
+      <!-- Banner 6: Purple Cross & Calavera -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md text-purple-400">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <path fill="#0B0414" d="M45,26 L55,26 L55,36 L65,36 L65,46 L55,46 L55,75 L45,75 L45,46 L35,46 L35,36 L45,36 Z" />
+          <circle cx="20" cy="25" r="5" fill="#0B0414"/>
+          <circle cx="80" cy="25" r="5" fill="#0B0414"/>
+          <circle cx="20" cy="65" r="5" fill="#0B0414"/>
+          <circle cx="80" cy="65" r="5" fill="#0B0414"/>
+        </svg>
+      </div>
+
+      <!-- Banner 7: Flame Orange Heart -->
+      <div class="papel-banner flex-1 max-w-[85px] sm:max-w-[110px] text-center hidden md:block">
+        <svg viewBox="0 0 100 125" class="w-full drop-shadow-md text-marigold-400">
+          <path fill="currentColor" d="M2,5 L98,5 L98,95 L85,95 L80,105 L70,95 L60,105 L50,95 L40,105 L30,95 L20,105 L15,95 L2,95 Z" />
+          <path fill="#0B0414" d="M50,38 C42,26 28,32 30,46 C32,58 50,72 50,72 C50,72 68,58 70,46 C72,32 58,26 50,38 Z" />
+          <circle cx="22" cy="78" r="4" fill="#0B0414"/>
+          <circle cx="78" cy="78" r="4" fill="#0B0414"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TOP NAVIGATION & AMBIENT CONTROLS ================= -->
+  <nav class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3 border-b border-marigold-500/10">
+    <!-- Brand / Title -->
+    <div class="flex items-center space-x-3">
+      <div class="relative w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-tr from-marigold-600 via-flameAmber to-goldAccent-500 shadow-candle">
+        <!-- Calavera icon -->
+        <span class="text-xl">💀</span>
+        <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-marigold-400 rounded-full animate-ping opacity-75"></span>
+      </div>
+      <div>
+        <h1 class="font-display text-lg sm:text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-marigold-400 to-goldAccent-500">
+          Digital Ofrenda
+        </h1>
+        <p class="text-xs text-amber-200/60 font-serif tracking-widest hidden sm:block">
+          REMEMBRANCE STORY ALTAR • DÍA DE LOS MUERTOS
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive Badges & Action Buttons -->
+    <div class="flex items-center flex-wrap gap-2 text-xs">
+      <!-- AI Engine Indicator Badge -->
+      <button id="ai-status-pill" onclick="openAiSettingsModal()" class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-ofrendaPurple-900 border border-marigold-500/30 hover:border-marigold-400 transition-all group shadow-sm" title="Click to test or configure local Ollama connection">
+        <span id="ai-status-dot" class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span id="ai-status-text" class="text-amber-200/90 font-medium group-hover:text-amber-100">Checking Gemma AI...</span>
+        <span class="text-[10px] bg-marigold-500/20 text-marigold-300 px-1.5 py-0.5 rounded uppercase font-mono">local</span>
+      </button>
+
+      <!-- Ambient Audio Toggle -->
+      <button id="audio-toggle-btn" onclick="toggleAmbientMusic()" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-ofrendaPurple-900/80 border border-amber-500/30 hover:border-amber-400 text-amber-200 hover:text-white transition-all shadow-sm" title="Toggle peaceful Mexican guitar and ambient night chimes">
+        <span id="audio-icon">🔇</span>
+        <span id="audio-label" class="hidden md:inline font-serif">Play Ambient Guitars</span>
+      </button>
+
+      <!-- About & Open Innovation Modal Trigger -->
+      <button onclick="openAboutModal()" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-ofrendaPurple-800 to-ofrendaPurple-700 hover:from-marigold-600 hover:to-flameAmber text-amber-100 border border-goldAccent-500/40 transition-all shadow-md font-serif">
+        <span>🕯️</span>
+        <span class="font-medium">About & Privacy</span>
+      </button>
+
+      <!-- Jump to Dedication Form -->
+      <a href="#dedication-form-section" class="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-marigold-500 to-flameAmber hover:from-marigold-400 hover:to-goldAccent-500 text-ofrendaPurple-950 font-bold transition-all shadow-candle transform hover:scale-105">
+        <span>✨</span>
+        <span>Dedicate an Offering</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION & ALTAR INTRODUCTION ================= -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-16">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center justify-center space-x-2 px-4 py-1 rounded-full bg-marigold-500/10 border border-marigold-500/30 text-marigold-300 text-xs sm:text-sm font-serif mb-3 tracking-wider">
+        <span>🏵️</span>
+        <span>Honoring Those Who Live Forever in Our Hearts</span>
+        <span>🏵️</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-marigold-300 to-goldAccent-400 drop-shadow-sm mb-3">
+        Where Love Transcends the Veil
+      </h2>
+      <p class="text-amber-100/75 text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto">
+        Light a candle, offer their favorite treats, and let the gentle scent of cempasúchil guide your loved ones back. 
+        Local open-weight AI whispers their remembrance story in complete on-device privacy.
+      </p>
+    </div>
+
+    <!-- ================= THE 3-TIER INTERACTIVE OFRENDA (ALTAR) ================= -->
+    <section class="relative my-8 px-2 sm:px-6 py-8 rounded-3xl bg-gradient-to-b from-ofrendaPurple-900/90 via-ofrendaPurple-950 to-black/95 border-2 border-goldAccent-500/30 shadow-2xl shadow-black overflow-hidden">
+      <!-- Cempasúchil Golden Arch Background Glow -->
+      <div class="arch-cempasuchil absolute inset-0 pointer-events-none"></div>
+
+      <!-- Top Grand Arch Garland (SVG Arch with Marigolds & Monarch Butterflies) -->
+      <div class="relative z-10 flex flex-col items-center mb-6">
+        <div class="w-full max-w-4xl flex items-center justify-between text-marigold-400 px-4 text-xs sm:text-sm font-serif tracking-widest uppercase">
+          <span class="flex items-center space-x-1.5"><span class="text-lg">🦋</span> <span>Monarch Passage</span></span>
+          <span class="text-amber-200/70 font-display font-semibold tracking-wider text-center text-sm sm:text-base">
+            El Gran Arco de Cempasúchil
+          </span>
+          <span class="flex items-center space-x-1.5"><span>Eternal Haven</span> <span class="text-lg">🦋</span></span>
+        </div>
+        
+        <!-- Garland Divider -->
+        <div class="w-full max-w-4xl h-3 my-2 flex items-center justify-center space-x-1 overflow-hidden opacity-85">
+          <span class="text-marigold-500 text-sm">🏵️</span>
+          <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent via-marigold-500 to-transparent"></div>
+          <span class="text-goldAccent-400 text-sm">✨</span>
+          <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent via-marigold-500 to-transparent"></div>
+          <span class="text-marigold-500 text-sm">🏵️</span>
+        </div>
+      </div>
+
+      <!-- ================= TIER 1: SPIRIT REALM & PORTRAITS (TOP TIER) ================= -->
+      <div class="relative z-10 mb-8">
+        <div class="flex items-center justify-center mb-3">
+          <span class="px-3 py-1 rounded-full bg-ofrendaPurple-800/80 border border-goldAccent-500/40 text-[11px] uppercase tracking-widest text-goldAccent-400 font-serif font-bold shadow-sm">
+            Tier I • The Heaven & Portrait Gallery (El Cielo)
+          </span>
+        </div>
+
+        <!-- Portraits Grid Container -->
+        <div id="altar-portraits-grid" class="flex flex-wrap items-end justify-center gap-4 sm:gap-6 px-2 min-h-[200px]">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Tier 1 Shelf Base -->
+        <div class="altar-tier w-full h-8 sm:h-10 mt-3 rounded-md flex items-center justify-between px-4 text-xs font-serif text-amber-200/60">
+          <span>🕊️ Spirits Welcomed</span>
+          <span class="text-marigold-400 font-medium">Click any portrait to read their story or kindle light</span>
+          <span>🕊️ In Loving Memory</span>
+        </div>
+      </div>
+
+      <!-- ================= TIER 2: EARTHLY NOURISHMENT & FAVORITE THINGS (MIDDLE TIER) ================= -->
+      <div class="relative z-10 mb-8">
+        <div class="flex items-center justify-center mb-3">
+          <span class="px-3 py-1 rounded-full bg-ofrendaPurple-800/80 border border-marigold-500/40 text-[11px] uppercase tracking-widest text-marigold-400 font-serif font-bold shadow-sm">
+            Tier II • Earthly Delights & Offerings (La Tierra)
+          </span>
+        </div>
+
+        <!-- Offerings Shelf Grid -->
+        <div id="altar-offerings-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 px-3 sm:px-6 py-2 items-end justify-items-center">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Tier 2 Shelf Base -->
+        <div class="altar-tier w-full h-8 sm:h-10 mt-3 rounded-md flex items-center justify-between px-4 text-xs font-serif text-amber-200/60">
+          <span>🍞 Pan de Muerto & Delicacies</span>
+          <span class="text-amber-300">Click dishes to discover memories & meanings</span>
+          <span>🎶 Melodies of Mictlán</span>
+        </div>
+      </div>
+
+      <!-- ================= TIER 3: GUIDING LIGHT & PURIFICATION (BASE TIER) ================= -->
+      <div class="relative z-10">
+        <div class="flex items-center justify-center mb-3">
+          <span class="px-3 py-1 rounded-full bg-ofrendaPurple-800/80 border border-amber-500/40 text-[11px] uppercase tracking-widest text-amber-300 font-serif font-bold shadow-sm">
+            Tier III • The Guiding Hearth, Purification & Veladoras (La Luz y El Camino)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-4 py-3 items-center">
+          <!-- Copal Incense Burner (Left) -->
+          <div class="md:col-span-3 flex flex-col items-center justify-center p-3 rounded-xl bg-ofrendaPurple-900/60 border border-copalCyan/30 text-center relative group hover:border-copalCyan/60 transition-all cursor-pointer" onclick="smokeIncenseBurst()">
+            <div class="relative h-20 w-16 flex items-center justify-center">
+              <!-- Animated smoke particles -->
+              <div class="copal-smoke absolute -top-4 w-4 h-4 rounded-full bg-white/20 blur-sm"></div>
+              <div class="copal-smoke absolute -top-8 left-4 w-6 h-6 rounded-full bg-cyan-200/25 blur-md" style="animation-delay: 1.2s;"></div>
+              <div class="copal-smoke absolute -top-12 left-1 w-8 h-8 rounded-full bg-white/15 blur-lg" style="animation-delay: 2.3s;"></div>
+              
+              <!-- Clay Copal Pot -->
+              <div class="w-12 h-10 rounded-b-2xl bg-amber-900 border-2 border-amber-700 flex items-center justify-center shadow-lg relative">
+                <div class="w-14 h-2 rounded-full bg-amber-600 absolute -top-1"></div>
+                <div class="w-3 h-3 rounded-full bg-flameAmber animate-pulse"></div>
+              </div>
+            </div>
+            <h4 class="font-serif text-xs text-copalCyan font-bold uppercase tracking-wider mt-1">Copal Incense (Sahumerio)</h4>
+            <p class="text-[10px] text-amber-200/60 leading-tight">Purifying the air & guiding weary spirits by aromatic smoke</p>
+          </div>
+
+          <!-- Active Candles Hearth (Center) -->
+          <div class="md:col-span-6 flex flex-col items-center justify-center">
+            <!-- Row of Interactive Flickering Candles -->
+            <div id="altar-candles-row" class="flex flex-wrap items-end justify-center gap-3 sm:gap-4 py-2">
+              <!-- Rendered via JS -->
+            </div>
+            
+            <!-- Camino de Cempasúchil (Petal Path) -->
+            <div class="w-full max-w-md h-3 mt-2 rounded-full bg-gradient-to-r from-amber-600/30 via-marigold-500/80 to-amber-600/30 flex items-center justify-around px-2 text-[10px] text-amber-950 font-bold select-none shadow-sm">
+              <span>🏵️</span><span>🏵️</span><span>🏵️</span><span>🏵️</span><span>🏵️</span><span>🏵️</span><span>🏵️</span>
+            </div>
+            <p class="text-[11px] text-marigold-400 font-serif mt-1">Camino de Cempasúchil • Golden Path of Scent & Memory</p>
+          </div>
+
+          <!-- Sacred Salt & Pure Water (Right) -->
+          <div class="md:col-span-3 flex flex-col items-center justify-center p-3 rounded-xl bg-ofrendaPurple-900/60 border border-goldAccent-500/30 text-center relative hover:border-goldAccent-500/60 transition-all">
+            <div class="flex items-center space-x-3 mb-1">
+              <!-- Glass of Water -->
+              <div class="flex flex-col items-center" title="Glass of Spring Water - to quench the thirst of the traveling spirit">
+                <div class="w-7 h-10 rounded-b-lg border border-cyan-300/60 bg-cyan-500/20 flex items-end justify-center pb-1 shadow-sm">
+                  <div class="w-5 h-6 bg-cyan-400/40 rounded-b"></div>
+                </div>
+                <span class="text-[9px] text-cyan-200 mt-1">Water (Agua)</span>
+              </div>
+              <!-- Salt Bowl -->
+              <div class="flex flex-col items-center" title="Bowl of Salt - symbol of purification and eternal preservation">
+                <div class="w-9 h-6 rounded-b-full border border-amber-300/60 bg-amber-100/90 flex items-center justify-center shadow-sm">
+                  <span class="text-[8px] text-amber-900 font-bold">✝</span>
+                </div>
+                <span class="text-[9px] text-amber-200 mt-1">Salt (Sal)</span>
+              </div>
+            </div>
+            <h4 class="font-serif text-xs text-goldAccent-400 font-bold uppercase tracking-wider">Purification & Refreshment</h4>
+            <p class="text-[10px] text-amber-200/60 leading-tight">Quenches the spirit's long journey from the other world</p>
+          </div>
+        </div>
+
+        <!-- Altar Base Step Ground -->
+        <div class="altar-tier w-full h-10 mt-3 rounded-b-2xl flex items-center justify-between px-6 text-xs font-serif text-amber-200/70">
+          <div class="flex items-center space-x-2">
+            <span class="text-marigold-400">🔥 Total Candles Burning:</span>
+            <span id="candles-count-badge" class="font-bold text-amber-100 bg-marigold-500/30 px-2 py-0.5 rounded-full border border-marigold-500/40">12</span>
+          </div>
+          <button onclick="kindleAllCandles()" class="text-goldAccent-400 hover:text-amber-100 transition-colors underline decoration-dotted font-medium text-xs">
+            ✨ Kindle All Altar Candles
+          </button>
+          <div class="flex items-center space-x-2">
+            <span class="text-marigold-400">🏵️ Offerings Placed:</span>
+            <span id="offerings-count-badge" class="font-bold text-amber-100 bg-marigold-500/30 px-2 py-0.5 rounded-full border border-marigold-500/40">8</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEDICATION INPUT FORM SECTION ================= -->
+    <section id="dedication-form-section" class="relative my-12 scroll-mt-6">
+      <div class="relative max-w-4xl mx-auto rounded-3xl bg-gradient-to-b from-ofrendaPurple-900/95 via-ofrendaPurple-900/90 to-ofrendaPurple-950 p-6 sm:p-10 border border-marigold-500/40 shadow-2xl shadow-marigold-500/10">
+        
+        <!-- Decorative Border Corner Accents -->
+        <div class="absolute -top-3 -left-3 text-2xl text-marigold-500 select-none">🏵️</div>
+        <div class="absolute -top-3 -right-3 text-2xl text-marigold-500 select-none">🏵️</div>
+        <div class="absolute -bottom-3 -left-3 text-2xl text-marigold-500 select-none">🏵️</div>
+        <div class="absolute -bottom-3 -right-3 text-2xl text-marigold-500 select-none">🏵️</div>
+
+        <!-- Form Header -->
+        <div class="text-center mb-8">
+          <span class="text-xs uppercase font-serif tracking-widest text-marigold-400 bg-marigold-500/10 px-3 py-1 rounded-full border border-marigold-500/30">
+            Sacred Remembrance Inscription
+          </span>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-marigold-400 to-goldAccent-400 mt-2 mb-2">
+            Dedicate an Offering to the Altar
+          </h3>
+          <p class="text-amber-100/70 text-xs sm:text-sm font-sans max-w-lg mx-auto">
+            Provide the cherished name, favorite foods, songs, and memories of your beloved. 
+            Our local Gemma AI (or built-in Story Weaver) will weave a poetic remembrance story to enshrine upon the altar.
+          </p>
+        </div>
+
+        <!-- The Interactive Dedication Form -->
+        <form id="ofrenda-form" onsubmit="handleDedicationSubmit(event)" class="space-y-6">
+          
+          <!-- Row 1: Name, Relationship & Memory Span -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+            <!-- Full Name -->
+            <div class="sm:col-span-5">
+              <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-1.5" for="input-name">
+                Loved One's Name <span class="text-marigold-400">*</span>
+              </label>
+              <div class="relative">
+                <input 
+                  type="text" 
+                  id="input-name" 
+                  required
+                  placeholder="e.g., Abuela Sofia Morales, or Buster (Our Dog)" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+                >
+                <span class="absolute right-3 top-2.5 text-marigold-400 text-sm">🏵️</span>
+              </div>
+            </div>
+
+            <!-- Relationship / Role -->
+            <div class="sm:col-span-4">
+              <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-1.5" for="input-relationship">
+                Relationship / Role <span class="text-marigold-400">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="input-relationship" 
+                required
+                placeholder="e.g., Grandmother, Father, Best Friend, Companion" 
+                class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+              >
+            </div>
+
+            <!-- Lifespan or Remembrance Span -->
+            <div class="sm:col-span-3">
+              <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-1.5" for="input-years">
+                Years (Optional)
+              </label>
+              <input 
+                type="text" 
+                id="input-years" 
+                placeholder="e.g., 1942 - 2021" 
+                class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+              >
+            </div>
+          </div>
+
+          <!-- Row 2: Portrait Photo Upload or Avatar Selection -->
+          <div class="p-4 rounded-2xl bg-ofrendaPurple-950/60 border border-marigold-500/20">
+            <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-2">
+              Altar Portrait: Photo or Calavera Icon
+            </label>
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <!-- Photo Upload Field -->
+              <div class="w-full sm:w-1/2">
+                <div class="relative border-2 border-dashed border-marigold-500/40 hover:border-marigold-400 rounded-xl p-3 text-center cursor-pointer transition-all bg-ofrendaPurple-900/40 group">
+                  <input type="file" id="photo-upload-input" accept="image/*" onchange="handlePhotoUpload(event)" class="absolute inset-0 opacity-0 cursor-pointer">
+                  <div class="flex items-center justify-center space-x-2 text-amber-200 text-xs font-medium">
+                    <span class="text-lg">📷</span>
+                    <span id="photo-upload-status">Upload Portrait (Stays On-Device)</span>
+                  </div>
+                  <p class="text-[10px] text-amber-200/50 mt-0.5">JPG, PNG, WebP • 100% private client-side</p>
+                </div>
+              </div>
+
+              <!-- Or Choose Calavera Spirit Avatar -->
+              <div class="w-full sm:w-1/2">
+                <p class="text-[11px] text-amber-200/70 mb-1.5 font-serif">Or select a memorial calavera symbol:</p>
+                <div class="flex items-center justify-between gap-1.5" id="avatar-selector">
+                  <button type="button" onclick="selectAvatar('💀')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border-2 border-marigold-500 text-lg hover:scale-110 transition-transform" data-avatar="💀">💀</button>
+                  <button type="button" onclick="selectAvatar('👑')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border border-amber-500/40 text-lg hover:scale-110 transition-transform" data-avatar="👑">👑</button>
+                  <button type="button" onclick="selectAvatar('🌹')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border border-amber-500/40 text-lg hover:scale-110 transition-transform" data-avatar="🌹">🌹</button>
+                  <button type="button" onclick="selectAvatar('🎸')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border border-amber-500/40 text-lg hover:scale-110 transition-transform" data-avatar="🎸">🎸</button>
+                  <button type="button" onclick="selectAvatar('🐾')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border border-amber-500/40 text-lg hover:scale-110 transition-transform" data-avatar="🐾">🐾</button>
+                  <button type="button" onclick="selectAvatar('🦋')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border border-amber-500/40 text-lg hover:scale-110 transition-transform" data-avatar="🦋">🦋</button>
+                  <button type="button" onclick="selectAvatar('🕊️')" class="avatar-opt p-2 rounded-lg bg-ofrendaPurple-900 border border-amber-500/40 text-lg hover:scale-110 transition-transform" data-avatar="🕊️">🕊️</button>
+                </div>
+              </div>
+            </div>
+            <!-- Upload Preview Thumbnail -->
+            <div id="photo-preview-container" class="hidden mt-3 flex items-center space-x-3 bg-ofrendaPurple-900/80 p-2 rounded-xl border border-marigold-500/40">
+              <img id="photo-preview-img" src="" alt="Portrait preview" class="w-12 h-12 object-cover rounded-lg border border-goldAccent-500">
+              <div class="flex-grow">
+                <span class="text-xs text-amber-200 font-medium block">Custom Portrait Selected</span>
+                <span class="text-[10px] text-marigold-400">Will be framed with gold & cempasúchil garland</span>
+              </div>
+              <button type="button" onclick="clearUploadedPhoto()" class="text-xs text-red-400 hover:text-red-300 px-2 py-1">Remove</button>
+            </div>
+          </div>
+
+          <!-- Row 3: Favorite Foods & Treats -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-serif font-bold tracking-wider text-amber-200 uppercase" for="input-food">
+                Favorite Foods & Treats (Nourishment for the Spirit) <span class="text-marigold-400">*</span>
+              </label>
+              <span class="text-[11px] text-amber-200/50">Click tags to add quickly</span>
+            </div>
+            <!-- Quick Tag Buttons -->
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <button type="button" onclick="addFoodTag('Pan de Muerto')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🍞 Pan de Muerto</button>
+              <button type="button" onclick="addFoodTag('Abuelita Hot Chocolate')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">☕ Hot Chocolate</button>
+              <button type="button" onclick="addFoodTag('Mole Poblano')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🍲 Mole Poblano</button>
+              <button type="button" onclick="addFoodTag('Sweet Corn Tamales')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🫔 Tamales</button>
+              <button type="button" onclick="addFoodTag('Mezcal & Sal de Gusano')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🥃 Mezcal</button>
+              <button type="button" onclick="addFoodTag('Cinnamon Café de Olla')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">☕ Café de Olla</button>
+              <button type="button" onclick="addFoodTag('Calavera Sugar Candy')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">💀 Sugar Skulls</button>
+            </div>
+            <input 
+              type="text" 
+              id="input-food" 
+              required
+              placeholder="e.g., Pan de muerto, spicy mole, warm homemade cinnamon cookies, sweet oranges" 
+              class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+            >
+          </div>
+
+          <!-- Row 4: Music & Melodies Preferences -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-serif font-bold tracking-wider text-amber-200 uppercase" for="input-music">
+                Favorite Music, Melodies & Songs <span class="text-marigold-400">*</span>
+              </label>
+              <span class="text-[11px] text-amber-200/50">To play for their journey</span>
+            </div>
+            <!-- Quick Music Tags -->
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <button type="button" onclick="addMusicTag('Acoustic Boleros')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🎸 Acoustic Boleros</button>
+              <button type="button" onclick="addMusicTag('Mariachi & Rancheras')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🎺 Mariachi / Rancheras</button>
+              <button type="button" onclick="addMusicTag('Classic 70s Rock & Ballads')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">📻 Classic Rock</button>
+              <button type="button" onclick="addMusicTag('Gentle Spanish Lullabies')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🌙 Gentle Lullabies</button>
+              <button type="button" onclick="addMusicTag('Cumbia & Festive Brass')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">💃 Cumbia & Brass</button>
+              <button type="button" onclick="addMusicTag('La Llorona & Traditional Folk')" class="px-2.5 py-1 rounded-full bg-ofrendaPurple-950 border border-marigold-500/30 text-amber-200/80 hover:border-marigold-400 text-xs transition-colors">🎻 La Llorona Folk</button>
+            </div>
+            <input 
+              type="text" 
+              id="input-music" 
+              required
+              placeholder="e.g., Pedro Infante rancheras, romantic acoustic guitar, The Beatles, gentle piano" 
+              class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+            >
+          </div>
+
+          <!-- Row 5: Cherished Memories, Anecdotes, Sayings -->
+          <div>
+            <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-1.5" for="input-memories">
+              Cherished Memories, Anecdotes & Special Sayings <span class="text-marigold-400">*</span>
+            </label>
+            <textarea 
+              id="input-memories" 
+              rows="3" 
+              required
+              placeholder="Share a story or detail that captures their spirit: 'She would always hum in the kitchen every Sunday morning, telling us that a home without music is a house without a soul...', 'He taught me how to plant marigolds and always smiled with his eyes...'"
+              class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+            ></textarea>
+          </div>
+
+          <!-- Row 6: Offering Icons to Place on Visual Altar -->
+          <div>
+            <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-2">
+              Select Offering Tokens to Place on the Altar:
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="pan" checked class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">🍞</span>
+                <span class="text-xs text-amber-100 font-medium">Pan de Muerto</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="calavera" checked class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">💀</span>
+                <span class="text-xs text-amber-100 font-medium">Sugar Skull</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="flower" checked class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">🏵️</span>
+                <span class="text-xs text-amber-100 font-medium">Cempasúchil</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="drink" checked class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">☕</span>
+                <span class="text-xs text-amber-100 font-medium">Warm Cup</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="music" class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">🎸</span>
+                <span class="text-xs text-amber-100 font-medium">Guitar String</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="butterfly" class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">🦋</span>
+                <span class="text-xs text-amber-100 font-medium">Monarch Guide</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="candle" checked class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">🕯️</span>
+                <span class="text-xs text-amber-100 font-medium">Veladora Flame</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 cursor-pointer transition-colors">
+                <input type="checkbox" name="offering-token" value="copal" class="rounded border-marigold-500 text-marigold-500 focus:ring-marigold-500">
+                <span class="text-lg">💨</span>
+                <span class="text-xs text-amber-100 font-medium">Copal Smoke</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Candle Dedication Note / Blessing -->
+          <div>
+            <label class="block text-xs font-serif font-bold tracking-wider text-amber-200 uppercase mb-1.5" for="input-blessing">
+              Dedication Blessing / Message to Their Soul
+            </label>
+            <input 
+              type="text" 
+              id="input-blessing" 
+              placeholder="e.g., 'May the sweet aroma of flowers lead you gently home tonight. You are never forgotten.'" 
+              class="w-full px-4 py-2.5 rounded-xl bg-ofrendaPurple-950/90 border border-marigold-500/40 text-amber-100 placeholder-amber-100/30 text-sm focus:outline-none focus:border-marigold-400 focus:ring-2 focus:ring-marigold-500/30 transition-all"
+            >
+          </div>
+
+          <!-- Submit Button & Local AI Status indicator -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2 text-xs text-amber-200/70">
+              <span class="text-marigold-400">🛡️</span>
+              <span>Protected by On-Device Local Inference</span>
+            </div>
+
+            <button 
+              type="submit" 
+              id="submit-dedication-btn" 
+              class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-marigold-500 via-flameAmber to-goldAccent-500 hover:from-marigold-400 hover:to-goldAccent-400 text-ofrendaPurple-950 font-display font-bold text-base tracking-wider transition-all transform hover:-translate-y-0.5 hover:shadow-candle-lg active:scale-95 flex items-center justify-center space-x-2 shadow-candle"
+            >
+              <span>🕯️</span>
+              <span>Place Upon Altar & Weave Story</span>
+              <span>✨</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= LIVE TRIBUTE ARCHIVE SECTION ================= -->
+    <section class="mt-14 mb-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-marigold-500/20 pb-4 mb-6">
+        <div>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-amber-100">
+            Remembrance Chronicles & Memorial Tributes
+          </h3>
+          <p class="text-xs sm:text-sm text-amber-200/60 font-serif">
+            Read the heartfelt stories woven by local Gemma AI for all honored souls on this altar.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="filterTributes('all')" class="tribute-filter-btn px-3 py-1 rounded-full bg-marigold-500 text-ofrendaPurple-950 font-bold text-xs" data-filter="all">All Tributes</button>
+          <button onclick="filterTributes('family')" class="tribute-filter-btn px-3 py-1 rounded-full bg-ofrendaPurple-900 border border-marigold-500/30 hover:border-marigold-400 text-amber-200 text-xs" data-filter="family">Family</button>
+          <button onclick="filterTributes('pets')" class="tribute-filter-btn px-3 py-1 rounded-full bg-ofrendaPurple-900 border border-marigold-500/30 hover:border-marigold-400 text-amber-200 text-xs" data-filter="pets">Pets & Companions</button>
+        </div>
+      </div>
+
+      <div id="tributes-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= STORY REMEMBRANCE MODAL / ALTAR SPOTLIGHT ================= -->
+  <div id="story-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden transition-opacity duration-300">
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-gradient-to-b from-ofrendaPurple-900 via-ofrendaPurple-950 to-black border-2 border-goldAccent-500/60 p-6 sm:p-8 shadow-2xl shadow-marigold-500/20">
+      
+      <!-- Close Button -->
+      <button onclick="closeStoryModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-ofrendaPurple-800/80 border border-goldAccent-500/40 text-amber-200 hover:text-white hover:bg-marigold-600 transition-colors flex items-center justify-center text-lg z-20">
+        ✕
+      </button>
+
+      <!-- Modal Content Header -->
+      <div class="flex items-start space-x-4 mb-6">
+        <!-- Portrait / Avatar Frame with Glow -->
+        <div class="relative flex-shrink-0">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 border-goldAccent-500 bg-ofrendaPurple-950 p-1 shadow-candle flex items-center justify-center overflow-hidden">
+            <img id="modal-portrait-img" src="" alt="Portrait" class="w-full h-full object-cover rounded-xl hidden">
+            <span id="modal-portrait-avatar" class="text-3xl sm:text-4xl">💀</span>
+          </div>
+          <!-- Tiny flame indicator -->
+          <div class="absolute -bottom-2 -right-1 text-sm flame">🔥</div>
+        </div>
+
+        <div class="flex-grow">
+          <span id="modal-tribute-relationship" class="text-xs uppercase font-serif tracking-widest text-marigold-400 font-bold">Grandmother</span>
+          <h3 id="modal-tribute-name" class="font-display text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-marigold-300 to-goldAccent-400">
+            Abuela Sofia Morales
+          </h3>
+          <p id="modal-tribute-years" class="text-xs text-amber-200/60 font-serif">1935 - 2021</p>
+          <div class="flex flex-wrap gap-1.5 mt-2">
+            <span id="modal-offering-badge-food" class="text-[10px] bg-marigold-500/20 text-marigold-300 px-2 py-0.5 rounded-full border border-marigold-500/30">🍞 Mole & Tamales</span>
+            <span id="modal-offering-badge-music" class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full border border-purple-500/30">🎸 Acoustic Boleros</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blessing Note Quote -->
+      <div id="modal-blessing-box" class="mb-5 p-3.5 rounded-xl bg-ofrendaPurple-950/80 border-l-4 border-marigold-500 italic text-amber-200/90 text-xs sm:text-sm font-serif">
+        "May the light of ten thousand marigolds always lead your smile back to our table."
+      </div>
+
+      <!-- The Story Container -->
+      <div class="relative p-5 rounded-2xl bg-black/60 border border-marigold-500/20 mb-6 min-h-[140px]">
+        <div class="flex items-center justify-between mb-3 text-xs text-marigold-400/90 font-serif border-b border-marigold-500/20 pb-2">
+          <div class="flex items-center space-x-1.5">
+            <span class="text-sm">📜</span>
+            <span class="font-bold tracking-wider uppercase">Remembrance Chronicle</span>
+          </div>
+          <span id="modal-engine-tag" class="text-[10px] px-2 py-0.5 rounded-full bg-ofrendaPurple-800 text-amber-200 border border-marigold-500/30">
+            Local Gemma Inference
+          </span>
+        </div>
+
+        <!-- Animated Typing / Stream Text Body -->
+        <div id="modal-story-text" class="text-amber-100/90 text-sm leading-relaxed space-y-3 font-serif">
+          <!-- Story stream injected here -->
+        </div>
+
+        <!-- Ethereal Pulsing Flame Typing Indicator -->
+        <div id="story-stream-cursor" class="hidden mt-2 flex items-center space-x-2 text-marigold-400 text-xs font-serif italic">
+          <span class="inline-block w-2.5 h-4 bg-marigold-400 animate-pulse"></span>
+          <span>Weaving memories from the spirit veil...</span>
+        </div>
+      </div>
+
+      <!-- Modal Action Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-marigold-500/20">
+        <div class="flex items-center space-x-2">
+          <!-- Text to Speech Button -->
+          <button id="modal-speak-btn" onclick="toggleReadAloud()" class="px-3 py-1.5 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/40 hover:border-marigold-400 text-amber-200 hover:text-white text-xs font-serif flex items-center space-x-1.5 transition-colors">
+            <span id="speak-icon">🔊</span>
+            <span id="speak-text">Read Aloud</span>
+          </button>
+          
+          <!-- Copy Tribute Button -->
+          <button onclick="copyTributeStory()" class="px-3 py-1.5 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/40 hover:border-marigold-400 text-amber-200 hover:text-white text-xs font-serif flex items-center space-x-1.5 transition-colors">
+            <span>📋</span>
+            <span id="copy-text">Copy Story</span>
+          </button>
+        </div>
+
+        <!-- Light Candle for this Soul -->
+        <button id="modal-light-candle-btn" onclick="lightSoulCandle()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-marigold-500 to-flameAmber hover:from-marigold-400 hover:to-goldAccent-400 text-ofrendaPurple-950 font-bold text-xs tracking-wider font-display flex items-center space-x-1.5 shadow-candle transition-all transform hover:scale-105">
+          <span>🕯️</span>
+          <span>Light Their Candle (+1)</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= ABOUT & OPEN INNOVATION MODAL ================= -->
+  <div id="about-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden transition-opacity duration-300">
+    <div class="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl bg-gradient-to-b from-ofrendaPurple-900 via-ofrendaPurple-950 to-black border-2 border-goldAccent-500/70 p-6 sm:p-8 shadow-2xl shadow-marigold-500/30">
+      
+      <!-- Close Button -->
+      <button onclick="closeAboutModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-ofrendaPurple-800/80 border border-goldAccent-500/40 text-amber-200 hover:text-white hover:bg-marigold-600 transition-colors flex items-center justify-center text-lg z-20">
+        ✕
+      </button>
+
+      <!-- Modal Title -->
+      <div class="text-center mb-6">
+        <span class="text-xs uppercase font-serif tracking-widest text-marigold-400 bg-marigold-500/10 px-3 py-1 rounded-full border border-marigold-500/30">
+          Open Innovation & Sovereign AI Architecture
+        </span>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-marigold-300 to-goldAccent-400 mt-2">
+          Why Local Open-Weight Models Matter
+        </h3>
+        <p class="text-xs sm:text-sm text-amber-200/70 font-serif mt-1">
+          Preserving sacred memories without sacrificing personal privacy or cultural sovereignty.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <!-- Card 1: Data Sovereignty -->
+        <div class="p-4 rounded-2xl bg-ofrendaPurple-950/80 border border-marigold-500/30">
+          <div class="text-2xl mb-2">🛡️</div>
+          <h4 class="font-serif font-bold text-amber-100 text-sm mb-1">Zero-Cloud Personal Privacy</h4>
+          <p class="text-xs text-amber-200/70 leading-relaxed font-sans">
+            Family grief, personal names, and ancestral anecdotes should never be harvested, monetized, or used as training fodder for centralized cloud corporations. By running the inference loop locally via <strong class="text-marigold-400">Ollama</strong> and <strong class="text-goldAccent-400">Google DeepMind's Gemma model</strong>, zero data bytes leave your computer.
+          </p>
+        </div>
+
+        <!-- Card 2: Offline Resilience -->
+        <div class="p-4 rounded-2xl bg-ofrendaPurple-950/80 border border-marigold-500/30">
+          <div class="text-2xl mb-2">⚡</div>
+          <h4 class="font-serif font-bold text-amber-100 text-sm mb-1">Decentralized & Off-Grid Ready</h4>
+          <p class="text-xs text-amber-200/70 leading-relaxed font-sans">
+            Cultural rituals take place in homes, cemeteries, community centers, and rural towns where internet access can be spotty or non-existent. Open weights democratize AI, letting digital altars run completely off-grid on a laptop or edge device with zero monthly API fees.
+          </p>
+        </div>
+
+        <!-- Card 3: Google DeepMind Gemma Open Innovation -->
+        <div class="p-4 rounded-2xl bg-ofrendaPurple-950/80 border border-marigold-500/30">
+          <div class="text-2xl mb-2">🔬</div>
+          <h4 class="font-serif font-bold text-amber-100 text-sm mb-1">Gemma: State-of-the-Art Open Weights</h4>
+          <p class="text-xs text-amber-200/70 leading-relaxed font-sans">
+            Built from the same research and technology used to create Gemini, Gemma brings world-class language understanding and poetic synthesis into consumer hardware. Its compact footprint enables nuanced, culturally respectful prose generation in real-time.
+          </p>
+        </div>
+
+        <!-- Card 4: Graceful Automatic Fallback -->
+        <div class="p-4 rounded-2xl bg-ofrendaPurple-950/80 border border-marigold-500/30">
+          <div class="text-2xl mb-2">🏵️</div>
+          <h4 class="font-serif font-bold text-amber-100 text-sm mb-1">The Dual-Engine Guarantee</h4>
+          <p class="text-xs text-amber-200/70 leading-relaxed font-sans">
+            If an Ollama instance is unreachable, this app automatically activates its built-in <strong class="text-marigold-400">Ofrenda Story Weaver</strong> engine. No user is ever stranded with an error screen; the remembrance ritual continues seamlessly.
+          </p>
+        </div>
+      </div>
+
+      <!-- Architecture Flow Diagram -->
+      <div class="p-4 rounded-2xl bg-black/60 border border-goldAccent-500/30 mb-6">
+        <h4 class="font-serif text-xs uppercase tracking-wider text-goldAccent-400 font-bold mb-3 text-center">
+          Local Privacy Loop Architecture
+        </h4>
+        <div class="flex flex-col sm:flex-row items-center justify-between text-center gap-2 text-xs">
+          <div class="flex-1 p-2.5 rounded-xl bg-ofrendaPurple-900 border border-marigold-500/40">
+            <div class="text-lg">💻</div>
+            <div class="font-bold text-amber-100 mt-1">Browser Client</div>
+            <div class="text-[10px] text-amber-200/60">HTML5 / Tailwind UI</div>
+          </div>
+          <div class="text-marigold-400 font-bold sm:rotate-0 rotate-90">⟷</div>
+          <div class="flex-1 p-2.5 rounded-xl bg-ofrendaPurple-900 border border-marigold-500/40">
+            <div class="text-lg">🔒</div>
+            <div class="font-bold text-amber-100 mt-1">Localhost Loopback</div>
+            <div class="text-[10px] text-amber-200/60">http://localhost:11434</div>
+          </div>
+          <div class="text-marigold-400 font-bold sm:rotate-0 rotate-90">⟷</div>
+          <div class="flex-1 p-2.5 rounded-xl bg-ofrendaPurple-900 border border-marigold-500/40">
+            <div class="text-lg">🧠</div>
+            <div class="font-bold text-amber-100 mt-1">Ollama • Gemma</div>
+            <div class="text-[10px] text-amber-200/60">Local VRAM Weights</div>
+          </div>
+          <div class="text-red-400 font-bold">🚫</div>
+          <div class="p-2.5 rounded-xl bg-red-950/40 border border-red-500/40 opacity-75">
+            <div class="text-lg">☁️</div>
+            <div class="font-bold text-red-200 mt-1">No Cloud Call</div>
+            <div class="text-[10px] text-red-300/60">Zero Telemetry</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Ollama Setup Guide -->
+      <div class="p-4 rounded-2xl bg-ofrendaPurple-950/90 border border-marigold-500/40">
+        <h4 class="font-serif text-xs font-bold text-marigold-400 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
+          <span>🚀</span>
+          <span>How to Run Gemma Locally via Ollama:</span>
+        </h4>
+        <div class="space-y-2 text-xs font-mono text-amber-200/90">
+          <div class="p-2 rounded bg-black/70 border border-marigold-500/20 flex items-center justify-between">
+            <code>1. Download Ollama from: https://ollama.com</code>
+          </div>
+          <div class="p-2 rounded bg-black/70 border border-marigold-500/20 flex items-center justify-between">
+            <code>2. In your terminal run: ollama run gemma</code>
+            <button onclick="navigator.clipboard.writeText('ollama run gemma')" class="text-[10px] bg-marigold-500/20 hover:bg-marigold-500/40 text-marigold-300 px-2 py-0.5 rounded">Copy</button>
+          </div>
+          <div class="p-2 rounded bg-black/70 border border-marigold-500/20 flex items-center justify-between">
+            <code>3. Lightweight option: ollama run gemma:2b</code>
+            <button onclick="navigator.clipboard.writeText('ollama run gemma:2b')" class="text-[10px] bg-marigold-500/20 hover:bg-marigold-500/40 text-marigold-300 px-2 py-0.5 rounded">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Close Button Bottom -->
+      <div class="text-center mt-6">
+        <button onclick="closeAboutModal()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-marigold-500 to-flameAmber text-ofrendaPurple-950 font-bold text-xs uppercase font-serif tracking-wider shadow-candle hover:brightness-110">
+          Return to Sacred Altar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= AI SETTINGS / STATUS MODAL ================= -->
+  <div id="ai-settings-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden transition-opacity duration-300">
+    <div class="relative w-full max-w-lg rounded-3xl bg-gradient-to-b from-ofrendaPurple-900 via-ofrendaPurple-950 to-black border-2 border-marigold-500/60 p-6 shadow-2xl">
+      <button onclick="closeAiSettingsModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-ofrendaPurple-800 text-amber-200 hover:text-white flex items-center justify-center">✕</button>
+      
+      <div class="text-center mb-4">
+        <span class="text-2xl">🧠</span>
+        <h3 class="font-display text-xl font-bold text-amber-100 mt-1">Local AI Engine Configuration</h3>
+        <p class="text-xs text-amber-200/60 font-serif">Configure or test your connection to local Ollama inference.</p>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-serif text-amber-200 uppercase mb-1">Ollama API Endpoint</label>
+          <input type="text" id="setting-ollama-url" value="http://localhost:11434/api/generate" class="w-full px-3 py-2 rounded-xl bg-black/70 border border-marigold-500/40 text-xs font-mono text-amber-100 focus:outline-none focus:border-marigold-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-serif text-amber-200 uppercase mb-1">Model Name</label>
+          <select id="setting-ollama-model" class="w-full px-3 py-2 rounded-xl bg-black/70 border border-marigold-500/40 text-xs font-mono text-amber-100 focus:outline-none focus:border-marigold-400">
+            <option value="gemma" selected>gemma (Google DeepMind standard)</option>
+            <option value="gemma2">gemma2 (Gemma 2)</option>
+            <option value="gemma:2b">gemma:2b (ultra-fast compact)</option>
+            <option value="gemma:7b">gemma:7b (high fidelity)</option>
+            <option value="llama3">llama3</option>
+            <option value="custom">Custom model...</option>
+          </select>
+        </div>
+
+        <!-- Connection Test Result Box -->
+        <div id="connection-test-result" class="p-3 rounded-xl bg-black/60 border border-marigold-500/20 text-xs text-amber-200">
+          <div class="flex items-center space-x-2">
+            <span id="test-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span id="test-indicator-status">Ready to test connection</span>
+          </div>
+          <p id="test-indicator-detail" class="text-[11px] text-amber-200/60 mt-1">Click the button below to probe localhost:11434.</p>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-2">
+          <button onclick="testOllamaConnection(true)" class="flex-1 py-2 rounded-xl bg-ofrendaPurple-800 hover:bg-ofrendaPurple-700 border border-marigold-500/40 text-amber-100 text-xs font-bold font-serif transition-colors">
+            🔄 Test Connection Now
+          </button>
+          <button onclick="saveAiSettings()" class="flex-1 py-2 rounded-xl bg-marigold-500 hover:bg-marigold-400 text-ofrendaPurple-950 text-xs font-bold font-serif transition-colors">
+            💾 Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="relative z-20 border-t border-marigold-500/20 bg-black/90 py-8 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <div class="flex items-center justify-center space-x-3 text-marigold-500 text-lg">
+        <span>🏵️</span><span>💀</span><span>🕯️</span><span>🦋</span><span>🏵️</span>
+      </div>
+      <p class="font-display text-sm font-bold tracking-wider text-amber-200">
+        Digital Ofrenda & Remembrance Story Altar
+      </p>
+      <p class="text-xs text-amber-200/60 font-serif max-w-xl mx-auto">
+        Built for Día de los Muertos & Halloween Hackathon • Honoring timeless ancestral traditions with modern open-weight AI sovereignty.
+      </p>
+      <div class="text-[11px] text-amber-200/40 pt-2 flex flex-wrap items-center justify-center gap-4">
+        <span>No cloud telemetry</span>
+        <span>•</span>
+        <span>Local Gemma via Ollama</span>
+        <span>•</span>
+        <span>Offline Story Weaver fallback</span>
+        <span>•</span>
+        <span>Web Audio API Procedural Synthesizer</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT APPLICATION LOGIC ================= -->
+  <script>
+    /* =====================================================================
+       1. INITIAL STATE & PRELOADED SEED DATA
+       ===================================================================== */
+    const DEFAULT_OLLAMA_URL = "http://localhost:11434/api/generate";
+    const DEFAULT_MODEL = "gemma";
+
+    let state = {
+      ollamaUrl: localStorage.getItem("ofrenda_ollama_url") || DEFAULT_OLLAMA_URL,
+      model: localStorage.getItem("ofrenda_model") || DEFAULT_MODEL,
+      isOllamaOnline: false,
+      isCheckingOllama: false,
+      audioPlaying: false,
+      currentAvatar: '💀',
+      uploadedPhotoData: null,
+      activeModalTribute: null,
+      speechUtterance: null,
+      isSpeaking: false,
+      totalCandlesLit: 14,
+      
+      // Starter Tributes pre-loaded for rich initial altar experience
+      tributes: [
+        {
+          id: 'tribute-1',
+          name: 'Abuela Sofia Morales',
+          relationship: 'Grandmother',
+          years: '1938 – 2021',
+          category: 'family',
+          avatar: '🌹',
+          photo: null,
+          foods: 'Pan de Muerto, Rich Mole Poblano, Cinnamon Café de Olla',
+          music: 'Pedro Infante Rancheras & Acoustic Boleros',
+          memories: 'She was the heart and warmth of our kitchen. Every Sunday morning she would sing softly while stirring the hot chocolate with her wooden molinillo, reminding us that love is the secret ingredient to every single feast.',
+          blessing: 'May the golden marigolds guide your radiant smile back to our Sunday table.',
+          offerings: ['pan', 'flower', 'candle', 'drink'],
+          candlesLit: 3,
+          story: 'When the autumn breeze carries the sweet, roasted warmth of anise and spiced sugar, the spirit of Abuela Sofia returns first to the kitchen. Her life was a symphony of bustling mornings, where the rhythmic tap of the wooden molinillo against clay pitchers called generations of sleepy children to the table. She believed that no soul leaves this world entirely so long as someone still craves the warmth of their hands. Tonight, as the candle flames flicker in quiet reverence, we can almost hear her soft, comforting laughter weaving through the strings of Pedro Infante\'s boleros, reminding us that grief is simply love that has found a second home in memory.'
+        },
+        {
+          id: 'tribute-2',
+          name: 'Tío Mateo "El Bohemio"',
+          relationship: 'Musician Uncle',
+          years: '1955 – 2019',
+          category: 'family',
+          avatar: '🎸',
+          photo: null,
+          foods: 'Mezcal de Oaxaca, Spicy Roasted Peanuts, Sweet Tamales',
+          music: 'La Llorona, Flamenco Guitars & Classic Cumbias',
+          memories: 'He never showed up to a family reunion without his weathered cedarwood guitar in hand. He could turn any quiet patio into a singing festival under the stars.',
+          blessing: 'Pluck the strings of the heavens tonight, Tío; the night is young and full of stars.',
+          offerings: ['music', 'drink', 'calavera', 'candle'],
+          candlesLit: 4,
+          story: 'They called him "El Bohemio" because he walked with a rhythm only poets and wandering souls could hear. His weathered cedar guitar bore the marks of countless campfires and late-night serenades under indigo skies. Tío Mateo taught us that a song is never truly over—it just waits in the courtyard breeze until someone hums it again. Tonight, the altar offers him a clay copita of smoky Oaxaca mezcal and the vibrant orange petals he always said looked like captured sunlight. Listen closely between the strumming notes: his melody still echoes across the courtyard.'
+        },
+        {
+          id: 'tribute-3',
+          name: 'Frida "The Golden Shadow"',
+          relationship: 'Beloved Golden Retriever',
+          years: '2010 – 2023',
+          category: 'pets',
+          avatar: '🐾',
+          photo: null,
+          foods: 'Roasted Sweet Potato, Peanut Butter Treats, Fresh Apples',
+          music: 'Soft Acoustic Guitar & Forest Rain',
+          memories: 'She was our loyal guardian and shadow for 13 years. She would wait at the front window every single day and greet every heartbreak with a gentle head rested on your knee.',
+          blessing: 'Run free across the cempasúchil fields, sweet faithful friend.',
+          offerings: ['flower', 'butterfly', 'candle'],
+          candlesLit: 5,
+          story: 'In ancient Aztec lore, the loyal Xoloitzcuintli and animal companions were chosen to guide human souls across the swirling waters of the river Chiconahuapan. For our family, Frida was already an angel in life—a golden silhouette that walked beside us through every storm and triumph. Her paws now tread the golden carpet of marigolds without pain or weariness. Tonight, her favorite roasted sweet potatoes rest on the altar, and by the golden glow of her candle, we know she still keeps faithful watch, waiting just on the sunlit side of the bridge.'
+        }
+      ]
+    };
+
+    /* =====================================================================
+       2. INITIALIZATION ON PAGE LOAD
+       ===================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      initPetalCanvas();
+      renderAltarPortraits();
+      renderAltarOfferings();
+      renderAltarCandles();
+      renderTributesCards();
+      checkOllamaConnection();
+      
+      // Auto periodic check every 30s
+      setInterval(checkOllamaConnection, 30000);
+    });
+
+    /* =====================================================================
+       3. PETAL & SPIRIT ORB CANVAS (FLOATING CEMPASÚCHIL PETALS)
+       ===================================================================== */
+    let canvas, ctx, petals = [];
+
+    function initPetalCanvas() {
+      canvas = document.getElementById('petals-canvas');
+      if (!canvas) return;
+      ctx = canvas.getContext('2d');
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // Create initial petals
+      const count = window.innerWidth < 640 ? 30 : 60;
+      petals = [];
+      for (let i = 0; i < count; i++) {
+        petals.push(createPetal(true));
+      }
+      requestAnimationFrame(animatePetals);
+    }
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createPetal(randomY = false) {
+      const isSpiritOrb = Math.random() < 0.25;
+      return {
+        x: Math.random() * window.innerWidth,
+        y: randomY ? Math.random() * window.innerHeight : -20,
+        size: isSpiritOrb ? Math.random() * 3 + 1.5 : Math.random() * 8 + 6,
+        speedY: isSpiritOrb ? -(Math.random() * 0.8 + 0.3) : Math.random() * 1.2 + 0.6, // Orbs float UP, petals float DOWN
+        speedX: Math.random() * 1.5 - 0.75,
+        rotation: Math.random() * 360,
+        rotSpeed: (Math.random() - 0.5) * 2,
+        opacity: Math.random() * 0.6 + 0.3,
+        color: isSpiritOrb 
+          ? (Math.random() < 0.5 ? '#FFD700' : '#00E5FF') 
+          : (Math.random() < 0.7 ? '#FF9900' : '#FF5500'),
+        isSpiritOrb: isSpiritOrb
+      };
+    }
+
+    function animatePetals() {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < petals.length; i++) {
+        const p = petals[i];
+        p.y += p.speedY;
+        p.x += Math.sin(p.y * 0.01) * 0.8 + p.speedX * 0.5;
+        p.rotation += p.rotSpeed;
+
+        ctx.save();
+        ctx.globalAlpha = p.opacity;
+        ctx.translate(p.x, p.y);
+
+        if (p.isSpiritOrb) {
+          // Floating luminous spirit spark / copal spark
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        } else {
+          // Cempasúchil marigold petal shape
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size);
+          ctx.quadraticCurveTo(p.size * 0.6, 0, 0, p.size);
+          ctx.quadraticCurveTo(-p.size * 0.6, 0, 0, -p.size);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = '#FF9900';
+          ctx.fill();
+        }
+        ctx.restore();
+
+        // Respawn if off screen
+        if (p.isSpiritOrb && p.y < -30) {
+          petals[i] = createPetal(false);
+          petals[i].y = canvas.height + 20; // Orbs start from bottom
+        } else if (!p.isSpiritOrb && p.y > canvas.height + 20) {
+          petals[i] = createPetal(false);
+        }
+      }
+      requestAnimationFrame(animatePetals);
+    }
+
+    // Interactive petal burst on click / submit
+    function triggerPetalBurst(originX, originY) {
+      const burstCount = 35;
+      for (let i = 0; i < burstCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 4 + 2;
+        petals.push({
+          x: originX || window.innerWidth / 2,
+          y: originY || window.innerHeight / 2,
+          size: Math.random() * 9 + 5,
+          speedY: Math.sin(angle) * speed,
+          speedX: Math.cos(angle) * speed,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 5,
+          opacity: 0.95,
+          color: Math.random() < 0.6 ? '#FFD700' : '#FF9900',
+          isSpiritOrb: Math.random() < 0.3
+        });
+      }
+    }
+
+    /* =====================================================================
+       4. LOCAL OLLAMA CONNECTION & GEMMA INFERENCE
+       ===================================================================== */
+    async function checkOllamaConnection() {
+      const statusDot = document.getElementById('ai-status-dot');
+      const statusText = document.getElementById('ai-status-text');
+      const pill = document.getElementById('ai-status-pill');
+
+      try {
+        state.isCheckingOllama = true;
+        // Test probe with tiny timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+
+        // Standard Ollama tag or generate test
+        const response = await fetch("http://localhost:11434/api/tags", {
+          method: "GET",
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          state.isOllamaOnline = true;
+          statusDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse";
+          statusText.innerText = "Gemma Active (Ollama)";
+          statusText.className = "text-emerald-300 font-medium";
+          pill.title = "Connected to local Ollama! Inference runs 100% on-device with zero cloud telemetry.";
+          return true;
+        } else {
+          throw new Error("HTTP " + response.status);
+        }
+      } catch (err) {
+        state.isOllamaOnline = false;
+        statusDot.className = "w-2.5 h-2.5 rounded-full bg-marigold-500";
+        statusText.innerText = "Story Weaver (Offline)";
+        statusText.className = "text-marigold-300 font-medium";
+        pill.title = "Local Ollama is currently unreachable. The built-in Ofrenda Story Weaver fallback is active and ready!";
+        return false;
+      } finally {
+        state.isCheckingOllama = false;
+      }
+    }
+
+    async function testOllamaConnection(userTriggered = false) {
+      const dot = document.getElementById('test-indicator-dot');
+      const status = document.getElementById('test-indicator-status');
+      const detail = document.getElementById('test-indicator-detail');
+      
+      dot.className = "w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping";
+      status.innerText = "Probing localhost:11434...";
+      detail.innerText = "Attempting to reach local Ollama daemon...";
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
+        const res = await fetch("http://localhost:11434/api/tags", { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (res.ok) {
+          const data = await res.json();
+          const modelsList = data.models ? data.models.map(m => m.name).join(', ') : 'Ollama running';
+          dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+          status.innerText = "Connected to Ollama Successfully!";
+          detail.innerText = `Detected local models: ${modelsList || 'gemma'}. Ready for private on-device generation!`;
+          state.isOllamaOnline = true;
+          checkOllamaConnection();
+        } else {
+          throw new Error("Server returned code " + res.status);
+        }
+      } catch (e) {
+        dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500";
+        status.innerText = "Ollama Offline / Unreachable";
+        detail.innerText = "Make sure Ollama is started (`ollama run gemma`). Built-in offline narrative fallback is automatically handling stories.";
+        state.isOllamaOnline = false;
+        checkOllamaConnection();
+      }
+    }
+
+    function saveAiSettings() {
+      const urlInput = document.getElementById('setting-ollama-url').value.trim();
+      const modelInput = document.getElementById('setting-ollama-model').value;
+      
+      state.ollamaUrl = urlInput || DEFAULT_OLLAMA_URL;
+      state.model = modelInput || DEFAULT_MODEL;
+
+      localStorage.setItem("ofrenda_ollama_url", state.ollamaUrl);
+      localStorage.setItem("ofrenda_model", state.model);
+
+      closeAiSettingsModal();
+      checkOllamaConnection();
+    }
+
+    /* =====================================================================
+       5. OFRENDA STORY GENERATOR: OLLAMA STREAMING + OFFLINE STORY WEAVER
+       ===================================================================== */
+    async function generateRemembranceStory(tributeData, streamTargetEl, engineTagEl) {
+      streamTargetEl.innerHTML = "";
+
+      // Craft the respectful prompt for Día de los Muertos remembrance
+      const prompt = `You are the sacred Ofrenda Storyteller for Día de los Muertos (Day of the Dead). 
+Write a deeply moving, poetic, and heartwarming remembrance tribute (approx 140-180 words) celebrating this honored soul.
+Details of the honored loved one:
+- Name: ${tributeData.name}
+- Relationship/Role: ${tributeData.relationship}
+- Memory Span: ${tributeData.years || 'Cherished in eternity'}
+- Favorite Foods: ${tributeData.foods}
+- Favorite Music: ${tributeData.music}
+- Memories/Anecdotes: ${tributeData.memories}
+- Dedication Blessing: ${tributeData.blessing || 'May your light guide our way'}
+
+Weave together the aroma of their favorite foods, the melodies they cherished, their laughter, and traditional Día de los Muertos symbolism (golden cempasúchil petals, flickering veladora candles, copal incense, and the bridge between worlds). Ensure it celebrates life, enduring love, and joyful remembrance rather than morbid sorrow. Write 2 rich paragraphs.`;
+
+      // Try streaming from local Ollama if online
+      if (state.isOllamaOnline) {
+        try {
+          if (engineTagEl) engineTagEl.innerText = `Local Gemma Inference (${state.model})`;
+          document.getElementById('story-stream-cursor').classList.remove('hidden');
+
+          const response = await fetch(state.ollamaUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              model: state.model,
+              prompt: prompt,
+              stream: true,
+              options: {
+                temperature: 0.75,
+                top_p: 0.9
+              }
+            })
+          });
+
+          if (!response.ok) throw new Error("Ollama returned status " + response.status);
+
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+          let accumulatedStory = "";
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split('\n');
+
+            for (const line of lines) {
+              if (!line.trim()) continue;
+              try {
+                const parsed = JSON.parse(line);
+                if (parsed.response) {
+                  accumulatedStory += parsed.response;
+                  streamTargetEl.innerHTML = formatStoryToHtml(accumulatedStory);
+                  // Scroll to bottom of modal
+                  const modalContent = document.getElementById('story-modal').firstElementChild;
+                  modalContent.scrollTop = modalContent.scrollHeight;
+                }
+              } catch (parseErr) {
+                // Ignore partial json in stream chunk
+              }
+            }
+          }
+
+          document.getElementById('story-stream-cursor').classList.add('hidden');
+          return accumulatedStory;
+
+        } catch (ollamaErr) {
+          console.warn("Ollama stream interrupted or failed. Switching to built-in Story Weaver fallback:", ollamaErr);
+          state.isOllamaOnline = false;
+          checkOllamaConnection();
+          // Fall through to offline fallback below!
+        }
+      }
+
+      // =====================================================================
+      // AUTOMATIC OFFLINE FALLBACK: OFRENDA NARRATIVE WEAVER
+      // =====================================================================
+      if (engineTagEl) engineTagEl.innerText = "Built-in Ofrenda Story Weaver (Offline)";
+      document.getElementById('story-stream-cursor').classList.remove('hidden');
+
+      const offlineStory = buildOfflineNarrative(tributeData);
+      
+      // Simulate natural streaming typewriter effect for offline narrative
+      const words = offlineStory.split(" ");
+      let currentText = "";
+      for (let i = 0; i < words.length; i++) {
+        currentText += (i === 0 ? "" : " ") + words[i];
+        streamTargetEl.innerHTML = formatStoryToHtml(currentText);
+        await new Promise(r => setTimeout(r, 28)); // Smooth fluid cadence
+      }
+
+      document.getElementById('story-stream-cursor').classList.add('hidden');
+      return offlineStory;
+    }
+
+    function formatStoryToHtml(text) {
+      return text.split('\n\n').map(p => `<p class="mb-2 leading-relaxed">${escapeHtml(p)}</p>`).join('');
+    }
+
+    function escapeHtml(string) {
+      const div = document.createElement('div');
+      div.innerText = string;
+      return div.innerHTML;
+    }
+
+    // Rich narrative generator using traditional Mexican literary motifs
+    function buildOfflineNarrative(data) {
+      const foodRef = data.foods ? data.foods.toLowerCase() : "the comforting warmth of home treats";
+      const musicRef = data.music ? data.music : "timeless acoustic melodies";
+      const memoriesRef = data.memories ? data.memories.trim() : "countless shared moments of laughter";
+      const name = data.name;
+      const relation = data.relationship ? data.relationship.toLowerCase() : "beloved soul";
+
+      const openings = [
+        `As twilight settles into deep velvet purple and the scent of copal purifies the air, the golden bridge of cempasúchil petals glows with unmistakable purpose. Tonight, we call upon the joyful spirit of ${name}, our cherished ${relation}. The universe preserves every spark of warmth they gifted to our lives, welcoming their arrival with open arms and illuminated candles.`,
+        `When the autumn night whispers through strings of papel picado, the veil between worlds thins to a tender embrace. Tonight, the altar is lit especially for ${name}. In Mexican tradition, our departed are never truly gone so long as their stories dance upon our lips and their favorite aromas fill our courtyards.`
+      ];
+
+      const middles = [
+        `Upon this altar, the essence of ${foodRef} stands ready to nourish their spirit after the long passage from Mictlán. In the air hangs the vibrant echo of ${musicRef}, just as they always loved. We remember so vividly: ${memoriesRef}. That gentle legacy continues to inspire each step we take forward.`,
+        `Their place at our table is eternal. Tonight we offer them ${foodRef}, seasoned with gratitude, while the chords of ${musicRef} resound across the candlelight. Those who knew them best remember: ${memoriesRef}. Love does not end with the heartbeat; it blossoms anew with every shared memory.`
+      ];
+
+      const closings = [
+        `Rest peacefully beneath the fluttering monarch butterflies, dear ${name}. Your candle burns brightly on our altar, and your memory remains our beacon of joy, love, and courage. Until our melodies meet again.`,
+        `May the glowing veladoras and sweet marigolds guide your return journey across the stars. You are deeply loved, celebrated in song, and forever enshrined in our family's sacred memory.`
+      ];
+
+      const chosenOpening = openings[Math.floor(Math.random() * openings.length)];
+      const chosenMiddle = middles[Math.floor(Math.random() * middles.length)];
+      const chosenClosing = closings[Math.floor(Math.random() * closings.length)];
+
+      return `${chosenOpening}\n\n${chosenMiddle}\n\n${chosenClosing}`;
+    }
+
+    /* =====================================================================
+       6. RENDERING THE INTERACTIVE ALTAR TIERS
+       ===================================================================== */
+    function renderAltarPortraits() {
+      const container = document.getElementById('altar-portraits-grid');
+      if (!container) return;
+      container.innerHTML = '';
+
+      state.tributes.forEach((tribute) => {
+        const card = document.createElement('div');
+        card.className = "flex flex-col items-center group cursor-pointer transform hover:-translate-y-1.5 transition-all duration-300";
+        card.onclick = () => openStoryModal(tribute);
+
+        const imgHtml = tribute.photo 
+          ? `<img src="${tribute.photo}" class="w-full h-full object-cover rounded-lg" alt="${tribute.name}">`
+          : `<span class="text-3xl sm:text-4xl filter drop-shadow-md">${tribute.avatar || '💀'}</span>`;
+
+        card.innerHTML = `
+          <!-- Golden Ornate Picture Frame -->
+          <div class="relative w-20 h-24 sm:w-28 sm:h-32 rounded-xl p-1.5 bg-gradient-to-tr from-amber-600 via-goldAccent-500 to-amber-700 border-2 border-goldAccent-400 shadow-gold-frame flex flex-col items-center justify-center overflow-hidden">
+            <!-- Ornate Corner Filigree -->
+            <div class="absolute top-0.5 left-0.5 text-[9px] text-amber-900 select-none">❖</div>
+            <div class="absolute top-0.5 right-0.5 text-[9px] text-amber-900 select-none">❖</div>
+            <div class="absolute bottom-0.5 left-0.5 text-[9px] text-amber-900 select-none">❖</div>
+            <div class="absolute bottom-0.5 right-0.5 text-[9px] text-amber-900 select-none">❖</div>
+
+            <!-- Photo Canvas Frame -->
+            <div class="w-full h-full rounded-lg bg-ofrendaPurple-950 flex items-center justify-center overflow-hidden border border-goldAccent-500/50 relative">
+              ${imgHtml}
+              <!-- Subtle gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Cempasúchil Garland Bow on Top of Frame -->
+            <div class="absolute -top-1.5 w-6 h-3 flex items-center justify-center text-xs">
+              <span>🏵️</span>
+            </div>
+          </div>
+
+          <!-- Name & Relationship Plaque -->
+          <div class="text-center mt-2 max-w-[120px]">
+            <span class="block text-xs font-serif font-bold text-amber-100 group-hover:text-goldAccent-400 transition-colors truncate">
+              ${tribute.name}
+            </span>
+            <span class="block text-[10px] text-marigold-400 font-sans truncate">
+              ${tribute.relationship}
+            </span>
+          </div>
+
+          <!-- Flickering Candle beneath Photo -->
+          <div class="mt-1 flex items-center space-x-1" title="Candles dedicated: ${tribute.candlesLit}">
+            <div class="relative flex flex-col items-center">
+              <div class="flame w-2 h-3.5 bg-gradient-to-t from-marigold-500 via-goldAccent-400 to-white rounded-full"></div>
+              <div class="w-3.5 h-4 bg-amber-100 rounded-t-sm border border-amber-300"></div>
+            </div>
+            <span class="text-[9px] text-amber-200/80 font-mono font-bold">×${tribute.candlesLit}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderAltarOfferings() {
+      const container = document.getElementById('altar-offerings-grid');
+      if (!container) return;
+      container.innerHTML = '';
+
+      // Standard and tribute-linked offerings on the middle tier
+      const offeringsCatalog = [
+        { icon: '🍞', title: 'Pan de Muerto', subtitle: 'Hearth Sweet Bread', note: 'Symbolizes the cycle of life & death with its cross-bone dough designs.' },
+        { icon: '💀', title: 'Calaveras de Azúcar', subtitle: 'Artisan Sugar Skull', note: 'Whimsical sweet skulls reminding us that death is sweet and not to be feared.' },
+        { icon: '☕', title: 'Chocolate de Olla', subtitle: 'Spiced Abuelita Cocoa', note: 'Steaming rich cacao with cinnamon to warm returning traveler spirits.' },
+        { icon: '🫔', title: 'Tamales de Maíz', subtitle: 'Traditional Corn Offering', note: 'Ancient Mesoamerican sustenance wrapped in corn husks.' },
+        { icon: '🥃', title: 'Copita de Mezcal', subtitle: 'Agave Remembrance', note: 'To toast to the joyous moments shared around the family table.' },
+        { icon: '🎸', title: 'Guitarra Acústica', subtitle: 'Soul of Boleros', note: 'Playing the favorite serenades and ballads of loved ones.' },
+        { icon: '🏵️', title: 'Ramillete de Cempasúchil', subtitle: 'Flor de Muerto', note: 'Its golden aroma and vivid orange petals illuminate the spirit bridge.' },
+        { icon: '🦋', title: 'Mariposa Monarca', subtitle: 'Guiding Wing', note: 'Legend tells monarch butterflies carry the arriving souls across the mountains.' }
+      ];
+
+      offeringsCatalog.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = "flex flex-col items-center text-center p-2 rounded-xl bg-ofrendaPurple-900/60 border border-marigold-500/20 hover:border-marigold-400 hover:bg-ofrendaPurple-800 transition-all cursor-pointer transform hover:scale-105 group";
+        itemEl.onclick = () => showOfferingDetail(item);
+
+        itemEl.innerHTML = `
+          <div class="w-12 h-12 rounded-full bg-ofrendaPurple-950 border border-goldAccent-500/40 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:shadow-candle transition-all">
+            ${item.icon}
+          </div>
+          <span class="text-[11px] font-serif font-bold text-amber-100 group-hover:text-goldAccent-300 mt-1.5 leading-tight">
+            ${item.title}
+          </span>
+          <span class="text-[9px] text-amber-200/50 leading-none">
+            ${item.subtitle}
+          </span>
+        `;
+        container.appendChild(itemEl);
+      });
+    }
+
+    function renderAltarCandles() {
+      const container = document.getElementById('altar-candles-row');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const candleTypes = [
+        { height: 'h-9', color: 'bg-amber-100', border: 'border-amber-300' },
+        { height: 'h-12', color: 'bg-amber-50', border: 'border-marigold-300' },
+        { height: 'h-7', color: 'bg-amber-200', border: 'border-amber-400' },
+        { height: 'h-14', color: 'bg-amber-100', border: 'border-amber-300' },
+        { height: 'h-10', color: 'bg-amber-50', border: 'border-marigold-300' },
+        { height: 'h-8', color: 'bg-amber-200', border: 'border-amber-400' },
+        { height: 'h-11', color: 'bg-amber-100', border: 'border-amber-300' }
+      ];
+
+      candleTypes.forEach((c, idx) => {
+        const candleWrapper = document.createElement('div');
+        candleWrapper.className = "flex flex-col items-center cursor-pointer group";
+        candleWrapper.onclick = () => kindleSingleCandle(candleWrapper);
+        candleWrapper.title = "Click to kindle / increase glow";
+
+        candleWrapper.innerHTML = `
+          <!-- Glowing Halo & Flame -->
+          <div class="relative flex flex-col items-center">
+            <div class="candle-halo absolute -top-3 w-8 h-8 rounded-full bg-marigold-500/30 blur-sm pointer-events-none"></div>
+            <div class="flame w-2.5 h-4 bg-gradient-to-t from-flameAmber via-goldAccent-400 to-white rounded-full group-hover:scale-125 transition-transform"></div>
+            <!-- Candle Wick -->
+            <div class="w-0.5 h-1.5 bg-black/80"></div>
+          </div>
+          <!-- Wax Cylinder Body with subtle drips -->
+          <div class="w-4 sm:w-5 ${c.height} ${c.color} ${c.border} border-t-0 rounded-t-sm shadow-md relative overflow-hidden flex flex-col justify-end">
+            <!-- Wax drip styling -->
+            <div class="w-full h-1 bg-amber-300/40"></div>
+          </div>
+        `;
+        container.appendChild(candleWrapper);
+      });
+    }
+
+    function renderTributesCards(filter = 'all') {
+      const container = document.getElementById('tributes-cards-grid');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const filtered = state.tributes.filter(t => filter === 'all' || t.category === filter);
+
+      filtered.forEach(tribute => {
+        const card = document.createElement('div');
+        card.className = "flex flex-col justify-between p-5 rounded-2xl bg-gradient-to-b from-ofrendaPurple-900/90 to-ofrendaPurple-950 border border-marigold-500/30 hover:border-marigold-400 shadow-lg hover:shadow-candle transition-all duration-300 group";
+
+        const photoOrAvatar = tribute.photo
+          ? `<img src="${tribute.photo}" class="w-12 h-12 object-cover rounded-xl border border-goldAccent-400" alt="${tribute.name}">`
+          : `<div class="w-12 h-12 rounded-xl bg-ofrendaPurple-950 border border-marigold-500/40 flex items-center justify-center text-2xl">${tribute.avatar || '💀'}</div>`;
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center space-x-3 mb-3">
+              ${photoOrAvatar}
+              <div class="flex-grow">
+                <span class="text-[10px] uppercase font-serif tracking-widest text-marigold-400 font-bold block">${tribute.relationship}</span>
+                <h4 class="font-display text-lg font-bold text-amber-100 group-hover:text-goldAccent-300 transition-colors">${tribute.name}</h4>
+                <span class="text-xs text-amber-200/60 font-serif">${tribute.years || 'Eternal Light'}</span>
+              </div>
+            </div>
+
+            <!-- Snippet -->
+            <p class="text-xs text-amber-100/80 line-clamp-3 font-serif leading-relaxed mb-3">
+              "${tribute.memories}"
+            </p>
+
+            <!-- Offering tags -->
+            <div class="flex flex-wrap gap-1 mb-4 text-[10px]">
+              <span class="bg-marigold-500/20 text-marigold-300 px-2 py-0.5 rounded border border-marigold-500/30 truncate max-w-[140px]">🍽️ ${tribute.foods}</span>
+              <span class="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 truncate max-w-[140px]">🎵 ${tribute.music}</span>
+            </div>
+          </div>
+
+          <!-- Bottom Card Bar -->
+          <div class="pt-3 border-t border-marigold-500/20 flex items-center justify-between text-xs">
+            <span class="text-marigold-400 flex items-center space-x-1">
+              <span class="flame text-sm">🔥</span>
+              <span class="font-mono">${tribute.candlesLit} candle${tribute.candlesLit > 1 ? 's' : ''}</span>
+            </span>
+
+            <button onclick="openStoryModalById('${tribute.id}')" class="px-3 py-1 rounded-lg bg-marigold-500/20 hover:bg-marigold-500 text-marigold-300 hover:text-ofrendaPurple-950 font-serif font-bold text-xs transition-colors flex items-center space-x-1">
+              <span>Read Chronicle</span>
+              <span>→</span>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterTributes(cat) {
+      document.querySelectorAll('.tribute-filter-btn').forEach(b => {
+        if (b.dataset.filter === cat) {
+          b.className = "tribute-filter-btn px-3 py-1 rounded-full bg-marigold-500 text-ofrendaPurple-950 font-bold text-xs";
+        } else {
+          b.className = "tribute-filter-btn px-3 py-1 rounded-full bg-ofrendaPurple-900 border border-marigold-500/30 hover:border-marigold-400 text-amber-200 text-xs";
+        }
+      });
+      renderTributesCards(cat);
+    }
+
+    /* =====================================================================
+       7. FORM SUBMISSION & ALTAR INTEGRATION
+       ===================================================================== */
+    function selectAvatar(symbol) {
+      state.currentAvatar = symbol;
+      document.querySelectorAll('#avatar-selector .avatar-opt').forEach(btn => {
+        if (btn.dataset.avatar === symbol) {
+          btn.classList.add('border-marigold-500', 'border-2');
+          btn.classList.remove('border-amber-500/40');
+        } else {
+          btn.classList.remove('border-marigold-500', 'border-2');
+          btn.classList.add('border-amber-500/40');
+        }
+      });
+    }
+
+    function handlePhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        state.uploadedPhotoData = e.target.result;
+        document.getElementById('photo-preview-img').src = e.target.result;
+        document.getElementById('photo-preview-container').classList.remove('hidden');
+        document.getElementById('photo-upload-status').innerText = file.name.substring(0, 20);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearUploadedPhoto() {
+      state.uploadedPhotoData = null;
+      document.getElementById('photo-upload-input').value = "";
+      document.getElementById('photo-preview-container').classList.add('hidden');
+      document.getElementById('photo-upload-status').innerText = "Upload Portrait (Stays On-Device)";
+    }
+
+    function addFoodTag(tagName) {
+      const input = document.getElementById('input-food');
+      if (input.value) {
+        if (!input.value.includes(tagName)) input.value += ', ' + tagName;
+      } else {
+        input.value = tagName;
+      }
+    }
+
+    function addMusicTag(tagName) {
+      const input = document.getElementById('input-music');
+      if (input.value) {
+        if (!input.value.includes(tagName)) input.value += ', ' + tagName;
+      } else {
+        input.value = tagName;
+      }
+    }
+
+    async function handleDedicationSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('input-name').value.trim();
+      const relationship = document.getElementById('input-relationship').value.trim();
+      const years = document.getElementById('input-years').value.trim();
+      const foods = document.getElementById('input-food').value.trim();
+      const music = document.getElementById('input-music').value.trim();
+      const memories = document.getElementById('input-memories').value.trim();
+      const blessing = document.getElementById('input-blessing').value.trim();
+
+      // Selected offering tokens
+      const selectedTokens = Array.from(document.querySelectorAll('input[name="offering-token"]:checked')).map(cb => cb.value);
+
+      // Determine category (pets vs family)
+      const relLower = relationship.toLowerCase();
+      const isPet = relLower.includes('dog') || relLower.includes('cat') || relLower.includes('pet') || relLower.includes('companion') || state.currentAvatar === '🐾';
+      const category = isPet ? 'pets' : 'family';
+
+      const newTribute = {
+        id: 'tribute-' + Date.now(),
+        name,
+        relationship,
+        years,
+        category,
+        avatar: state.currentAvatar,
+        photo: state.uploadedPhotoData,
+        foods,
+        music,
+        memories,
+        blessing: blessing || 'May the golden cempasúchil petals illuminate your eternal smile.',
+        offerings: selectedTokens,
+        candlesLit: 1,
+        story: ''
+      };
+
+      // Add to state at front
+      state.tributes.unshift(newTribute);
+      state.totalCandlesLit += 1;
+      document.getElementById('candles-count-badge').innerText = state.totalCandlesLit;
+      document.getElementById('offerings-count-badge').innerText = state.tributes.length + 5;
+
+      // Update altar views
+      renderAltarPortraits();
+      renderTributesCards();
+
+      // Trigger celebratory marigold petal explosion
+      triggerPetalBurst(window.innerWidth / 2, window.innerHeight * 0.4);
+      playBellChime();
+
+      // Reset form
+      document.getElementById('ofrenda-form').reset();
+      clearUploadedPhoto();
+
+      // Open Story Modal and immediately weave story with Local Gemma or Story Weaver!
+      openStoryModal(newTribute, true);
+    }
+
+    /* =====================================================================
+       8. MODAL WINDOWS & TRIBUTE SPOTLIGHT
+       ===================================================================== */
+    function openStoryModalById(id) {
+      const tribute = state.tributes.find(t => t.id === id);
+      if (tribute) openStoryModal(tribute);
+    }
+
+    async function openStoryModal(tribute, triggerGeneration = false) {
+      state.activeModalTribute = tribute;
+
+      const modal = document.getElementById('story-modal');
+      const nameEl = document.getElementById('modal-tribute-name');
+      const relEl = document.getElementById('modal-tribute-relationship');
+      const yearsEl = document.getElementById('modal-tribute-years');
+      const imgEl = document.getElementById('modal-portrait-img');
+      const avatarEl = document.getElementById('modal-portrait-avatar');
+      const foodBadge = document.getElementById('modal-offering-badge-food');
+      const musicBadge = document.getElementById('modal-offering-badge-music');
+      const blessingBox = document.getElementById('modal-blessing-box');
+      const storyTextEl = document.getElementById('modal-story-text');
+      const engineTagEl = document.getElementById('modal-engine-tag');
+
+      nameEl.innerText = tribute.name;
+      relEl.innerText = tribute.relationship;
+      yearsEl.innerText = tribute.years || 'Eternal Light';
+
+      if (tribute.photo) {
+        imgEl.src = tribute.photo;
+        imgEl.classList.remove('hidden');
+        avatarEl.classList.add('hidden');
+      } else {
+        imgEl.classList.add('hidden');
+        avatarEl.innerText = tribute.avatar || '💀';
+        avatarEl.classList.remove('hidden');
+      }
+
+      foodBadge.innerText = '🍽️ ' + (tribute.foods ? tribute.foods.substring(0, 24) : 'Traditional Offerings');
+      musicBadge.innerText = '🎵 ' + (tribute.music ? tribute.music.substring(0, 24) : 'Sacred Melodies');
+      blessingBox.innerText = `"${tribute.blessing || 'Forever remembered, forever loved.'}"`;
+
+      modal.classList.remove('hidden');
+
+      if (!tribute.story || triggerGeneration) {
+        const generated = await generateRemembranceStory(tribute, storyTextEl, engineTagEl);
+        tribute.story = generated;
+      } else {
+        storyTextEl.innerHTML = formatStoryToHtml(tribute.story);
+        engineTagEl.innerText = "Preserved Chronicle";
+      }
+    }
+
+    function closeStoryModal() {
+      if (state.isSpeaking) stopReadAloud();
+      document.getElementById('story-modal').classList.add('hidden');
+    }
+
+    function lightSoulCandle() {
+      if (!state.activeModalTribute) return;
+      state.activeModalTribute.candlesLit += 1;
+      state.totalCandlesLit += 1;
+      document.getElementById('candles-count-badge').innerText = state.totalCandlesLit;
+      renderAltarPortraits();
+      renderTributesCards();
+      playBellChime();
+      triggerPetalBurst(window.innerWidth / 2, window.innerHeight * 0.5);
+
+      const btn = document.getElementById('modal-light-candle-btn');
+      btn.innerHTML = `<span>🔥</span><span>Candle Lit (${state.activeModalTribute.candlesLit})</span>`;
+      setTimeout(() => {
+        btn.innerHTML = `<span>🕯️</span><span>Light Their Candle (+1)</span>`;
+      }, 1500);
+    }
+
+    function copyTributeStory() {
+      if (!state.activeModalTribute) return;
+      const copyText = `${state.activeModalTribute.name} - Remembrance Chronicle:\n\n${state.activeModalTribute.story}\n\nDedicated on the Digital Ofrenda.`;
+      navigator.clipboard.writeText(copyText).then(() => {
+        const copyBtnText = document.getElementById('copy-text');
+        copyBtnText.innerText = "Copied to Clipboard!";
+        setTimeout(() => copyBtnText.innerText = "Copy Story", 2000);
+      });
+    }
+
+    /* Web Speech API Read Aloud */
+    function toggleReadAloud() {
+      if (state.isSpeaking) {
+        stopReadAloud();
+      } else {
+        startReadAloud();
+      }
+    }
+
+    function startReadAloud() {
+      if (!window.speechSynthesis || !state.activeModalTribute) return;
+      window.speechSynthesis.cancel();
+
+      const text = `${state.activeModalTribute.name}. ${state.activeModalTribute.story}`;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.95; // Gentle dignified storytelling pace
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => stopReadAloud();
+      utterance.onerror = () => stopReadAloud();
+
+      state.speechUtterance = utterance;
+      state.isSpeaking = true;
+      window.speechSynthesis.speak(utterance);
+
+      document.getElementById('speak-icon').innerText = "⏹️";
+      document.getElementById('speak-text').innerText = "Stop Reading";
+    }
+
+    function stopReadAloud() {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      state.isSpeaking = false;
+      document.getElementById('speak-icon').innerText = "🔊";
+      document.getElementById('speak-text').innerText = "Read Aloud";
+    }
+
+    function showOfferingDetail(offering) {
+      alert(`🏵️ ${offering.title}\n\nSymbolism: ${offering.note}`);
+    }
+
+    function kindleSingleCandle(el) {
+      playBellChime();
+      triggerPetalBurst(window.innerWidth / 2, window.innerHeight * 0.7);
+      const flame = el.querySelector('.flame');
+      if (flame) {
+        flame.classList.add('flame-intense');
+        setTimeout(() => flame.classList.remove('flame-intense'), 3000);
+      }
+    }
+
+    function kindleAllCandles() {
+      playBellChime();
+      triggerPetalBurst(window.innerWidth / 2, window.innerHeight * 0.6);
+      document.querySelectorAll('.flame').forEach(f => {
+        f.classList.add('flame-intense');
+        setTimeout(() => f.classList.remove('flame-intense'), 4000);
+      });
+      state.totalCandlesLit += 5;
+      document.getElementById('candles-count-badge').innerText = state.totalCandlesLit;
+    }
+
+    function smokeIncenseBurst() {
+      triggerPetalBurst(window.innerWidth * 0.25, window.innerHeight * 0.7);
+      alert("💨 Copal Sahumerio (Sacred Tree Resin)\n\nIn Día de los Muertos traditions, the swirling white smoke of copal cleanses the spiritual plane, removing all discord so returning ancestors find absolute peace in their welcome.");
+    }
+
+    function openAboutModal() {
+      document.getElementById('about-modal').classList.remove('hidden');
+    }
+    function closeAboutModal() {
+      document.getElementById('about-modal').classList.add('hidden');
+    }
+
+    function openAiSettingsModal() {
+      document.getElementById('ai-settings-modal').classList.remove('hidden');
+      testOllamaConnection(false);
+    }
+    function closeAiSettingsModal() {
+      document.getElementById('ai-settings-modal').classList.add('hidden');
+    }
+
+    /* =====================================================================
+       9. PROCEDURAL WEB AUDIO API (OFFLINE MEXICAN GUITAR & CHIMES)
+       ===================================================================== */
+    let audioCtx = null;
+    let musicInterval = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playBellChime() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, now); // A5 chime
+        osc.frequency.exponentialRampToValueAtTime(1760, now + 0.1);
+        osc.frequency.exponentialRampToValueAtTime(440, now + 1.2);
+
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 1.5);
+      } catch (e) {
+        // Audio policy or unsupported
+      }
+    }
+
+    // Procedural Spanish/Mexican nylon guitar note synthesis
+    function playGuitarNote(freq, startTime, duration = 1.2) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      // Triangle + gentle filter emulation of nylon acoustic pluck
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, startTime);
+
+      gain.gain.setValueAtTime(0.15, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    }
+
+    function toggleAmbientMusic() {
+      initAudio();
+      const btn = document.getElementById('audio-toggle-btn');
+      const icon = document.getElementById('audio-icon');
+      const label = document.getElementById('audio-label');
+
+      if (!state.audioPlaying) {
+        state.audioPlaying = true;
+        icon.innerText = "🎵";
+        label.innerText = "Mute Ambient Guitars";
+        btn.classList.add('border-marigold-400', 'bg-ofrendaPurple-800');
+
+        // Spanish Phrygian guitar arpeggio progression (A minor / D minor / E major)
+        const chords = [
+          [220, 261.63, 329.63, 440], // A minor (A3, C4, E4, A4)
+          [196, 246.94, 293.66, 392], // G major (G3, B3, D4, G4)
+          [174.61, 220, 261.63, 349.23], // F major (F3, A3, C4, F4)
+          [164.81, 207.65, 246.94, 329.63] // E major (E3, G#3, B3, E4)
+        ];
+
+        let chordIdx = 0;
+        const playArpeggioStep = () => {
+          if (!state.audioPlaying) return;
+          const currentChord = chords[chordIdx % chords.length];
+          const now = audioCtx.currentTime;
+
+          currentChord.forEach((freq, noteIdx) => {
+            playGuitarNote(freq, now + noteIdx * 0.35, 1.4);
+          });
+
+          chordIdx++;
+        };
+
+        playArpeggioStep();
+        musicInterval = setInterval(playArpeggioStep, 1800);
+
+      } else {
+        state.audioPlaying = false;
+        clearInterval(musicInterval);
+        icon.innerText = "🔇";
+        label.innerText = "Play Ambient Guitars";
+        btn.classList.remove('border-marigold-400', 'bg-ofrendaPurple-800');
+      }
+    }
+  </script>
+</body>
+</html>
